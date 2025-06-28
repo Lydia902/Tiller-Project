@@ -6,7 +6,12 @@ sources:
     tables:
       - name: order 
         identifier: order_data
-
+        columns:
+          - name: id_order
+            tests:
+              - not_null
+              - unique
+              
       -  name: order_items
          identifier: order_line
 
