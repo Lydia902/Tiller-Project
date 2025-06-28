@@ -1,0 +1,12 @@
+version: 2
+sources:
+  - name: raw
+    schema: tiller_project
+    description: Tiller raw data from Big Query
+    tables:
+      - name: order 
+        identifier: order_data
+
+      -  name: order_items
+         identifier: order_line
+
