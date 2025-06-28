@@ -21,15 +21,19 @@ renamed as (
         m_tax_percent AS tax_percent,
         m_discount_amount AS discount_amount,
         dim_status AS order_status
+
+        -- the following columns don't make sense, the meaning must have been lost in translation
         -- dim_type,
         -- dim_category,
         -- dim_name,
-
         -- dim_feature_type,
-        -- dim_unit_measure,
-        -- dim_unit_measure_display,
         -- dim_category_translated,
-        -- dim_name_translated
+        -- dim_name_translated,
+
+        -- the following are mostly null 
+        -- dim_unit_measure,
+        -- dim_unit_measure_display
+
     from source
 
 )
