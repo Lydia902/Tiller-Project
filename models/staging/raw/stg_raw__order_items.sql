@@ -20,7 +20,11 @@ renamed as (
         m_total_price_exc_vat AS total_price_exc_vat,
         m_tax_percent AS tax_percent,
         m_discount_amount AS discount_amount,
-        dim_status AS order_status
+        
+        CASE
+         WHEN LOWER(dim_status) = 'waiting_sent' THEN 'sent'
+         ELSE LOWER(dim_status)
+        END AS order_status
 
         -- the following columns don't make sense, the meaning must have been lost in translation
         -- dim_type,
@@ -35,8 +39,6 @@ renamed as (
         -- dim_unit_measure_display
 
     from source
-
 )
 
-select * from renamed
-
+SELECT * FROM renamed

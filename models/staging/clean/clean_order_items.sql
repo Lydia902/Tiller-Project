@@ -1,2 +1,2 @@
-select * 
+select *
 from {{ref("stg_raw__order_items")}}
