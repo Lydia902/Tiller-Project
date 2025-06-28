@@ -15,3 +15,7 @@ sources:
       -  name: order_items
          identifier: order_line
 
+      - name: payment_information
+        identifier: payment_data
+   
+
