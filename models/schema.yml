@@ -10,3 +10,8 @@ sources:
       -  name: order_items
          identifier: order_line
 
+      -  name: payment information
+         identifier: payment_data
+  
+   
+
