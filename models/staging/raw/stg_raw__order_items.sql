@@ -39,6 +39,17 @@ renamed as (
         -- dim_unit_measure_display
 
     from source
+),
+
+filtered AS (
+    SELECT *
+    FROM renamed
+    WHERE NOT (
+        unit_price_incl_vat = 0
+        AND unit_price_exc_vat = 0
+        AND total_price_inc_vat = 0
+        AND total_price_exc_vat = 0
+    )
 )
 
-SELECT * FROM renamed
+SELECT * FROM filtered
