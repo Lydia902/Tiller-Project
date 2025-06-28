@@ -18,4 +18,6 @@ sources:
       - name: payment_information
         identifier: payment_data
    
+      - name: store_information 
+        identifier: store_data
 
