@@ -21,3 +21,125 @@ sources:
       - name: store_information 
         identifier: store_data
 
+
+
+
+models:
+  - name: stg_raw__payment_information
+    description: 
+      Staging model for raw payment information.
+      Standardizes payment types, handles nulls in cashback and credit, and renames columns for consistency.
+    columns:
+      - name: payment_date
+        description: "Timestamp when the payment record was created."
+        tests:
+          - not_null
+
+      - name: id_payment
+        description: "Unique identifier for each payment."
+        tests:
+          - not_null
+          - unique
+
+      - name: id_order
+        description: "Identifier for the associated order."
+        tests:
+          - not_null
+
+      - name: payment_status
+        description: "Raw payment status from source, lowercased."
+
+      - name: payment_type
+        description: "Raw payment type from source, lowercased."
+
+      - name: standardized_payment_type
+        description: "Normalized payment type derived from raw payment_type."
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - card_payment
+                - card_credit
+                - bank_transfer
+                - bank_check
+                - voucher
+                - meal_card
+                - delivery_app
+                - tip_app
+                - tabac_payment_point
+                - credit_note
+                - cash
+                - mobile_wallet
+                - deposit
+                - delivery_fee
+                - reimbursed_credit
+                - gift_card
+                - other
+                - unknown
+
+      - name: payment_total
+        description: "Total amount of the payment."
+        tests:
+          - not_null
+
+      - name: cashback
+        description: "Cashback amount, defaulted to 0.0 if null."
+
+      - name: credit
+        description: "Credit amount, defaulted to 0.0 if null."
+
+  - name: stg_raw__order_items
+    description: 
+      Staging model for raw order items.
+      Renames and standardizes columns, normalizes order status.
+    columns:
+      - name: id_item
+        description: "Unique identifier for each order line item."
+        tests:
+          - not_null
+          - unique
+
+      - name: id_order
+        description: "Identifier for the related order."
+        tests:
+          - not_null
+
+      - name: date_opened
+        description: "Date when the order line was opened."
+
+      - name: date_created
+        description: "Date when the order line was created."
+
+      - name: quantity
+        description: "Quantity of items ordered."
+
+      - name: unit_price_incl_vat
+        description: "Unit price including VAT."
+
+      - name: unit_price_exc_vat
+        description: "Unit price excluding VAT."
+
+      - name: total_price_inc_vat
+        description: "Total price including VAT for this order line."
+
+      - name: total_price_exc_vat
+        description: "Total price excluding VAT for this order line."
+
+      - name: tax_percent
+        description: "Tax percentage applied to this item."
+
+      - name: discount_amount
+        description: "Discount amount applied to this order line."
+
+      - name: order_status
+        description: |
+          Normalized order status, with 'waiting_sent' replaced by 'sent'.
+          Values are lowercased.
+        tests:
+          - not_null
+          - accepted_values:
+              values:
+                - waiting
+                - in_progress
+                - done
+                - sent
