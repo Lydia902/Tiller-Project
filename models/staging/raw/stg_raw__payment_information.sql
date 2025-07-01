@@ -12,7 +12,6 @@ renamed as (
         date_created AS payment_date,
         id_pay AS id_payment,
         id_order,
-        LOWER(dim_status) AS payment_status,
         LOWER(dim_type) AS payment_type,
 
     CASE
@@ -39,8 +38,11 @@ renamed as (
     END AS standardized_payment_type,
 
         m_amount AS payment_total,
-       COALESCE(m_cashback, 0.0) AS cashback,
-       COALESCE(m_credit, 0.0) AS credit
+
+       -- the following columns have the same value in each row 
+       -- LOWER(dim_status) AS payment_status,
+       -- COALESCE(m_cashback, 0.0) AS cashback,
+       -- COALESCE(m_credit, 0.0) AS credit
 
     from source
 
