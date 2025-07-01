@@ -1,1 +1,5 @@
-select * from {{ref("stg_raw__orders")}}
+ 
+    select * 
+    from {{ ref('stg_raw__orders') }}
+
+
