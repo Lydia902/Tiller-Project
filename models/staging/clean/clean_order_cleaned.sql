@@ -6,7 +6,7 @@ SELECT
   date_opened,
   date_closed,
   dim_status AS order_status,
-  m_nb_customer,
+  m_nb_customer AS nb_customer,
   m_cached_payed AS price_payed,
   m_cached_price AS price_to_pay,
   dim_source_cleaned AS device_name,
