@@ -1,13 +1,13 @@
 with source as (
     select * 
-    from {{ ref('stg_raw__orders') }}
+    from {{ ref('clean_order_data_add_column_time_spent') }}
 ),
 
 renamed as (
     select
         id_order,
         id_store,
-        id_table,
+        duration_min_sec,
         id_waiter,
         id_device,
         cast(date_opened as timestamp) as date_opened,
