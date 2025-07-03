@@ -1,3 +1,5 @@
+SELECT *
+from {{ref("stg_raw__payment_information")}}
 -- ## TOTAL AMOUNTS PAID PER PAYMENT TYPE ##
 
 --SELECT 

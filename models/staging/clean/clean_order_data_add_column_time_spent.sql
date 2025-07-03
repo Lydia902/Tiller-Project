@@ -1,5 +1,6 @@
 SELECT
   id_order,
+  id_store,
   date_opened,
   date_closed,
   CONCAT(
@@ -14,6 +15,7 @@ SELECT
   id_waiter,
   id_device,
   dim_status,
+  dim_source,
   m_nb_customer,
   m_cached_payed,
   m_cached_price
