@@ -33,13 +33,12 @@ enriched as (
     select
         id_store,
         EXTRACT(YEAR FROM date_opened) AS year,
-        EXTRACT(MONTH FROM date_opened) AS month,
+        FORMAT_DATE('%B', DATE(date_opened)) AS month_name,
         FORMAT_DATE('%A', DATE(date_closed)) AS day_of_week,
         EXTRACT(HOUR FROM date_closed) AS hour_of_day,
-        SUM(payment_total) AS total_turnover
+        ROUND(SUM(payment_total), 2) AS total_turnover
     from joined
-    group by id_store, year, month, day_of_week, hour_of_day
+    group by id_store, year, month_name, day_of_week, hour_of_day
 )
 
-select * from enriched;
-
+select * from enriched
