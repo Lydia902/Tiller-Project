@@ -28,6 +28,7 @@ joined as (
         -- Choose fields from stores, EXCLUDING id_store
         stores.date_created AS store_open_date,
         stores.zipcode,
+        stores.country
         
 
     from orders
