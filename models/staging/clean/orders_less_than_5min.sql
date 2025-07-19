@@ -1,4 +1,5 @@
 SELECT 
+    id_order,
     id_store, 
     id_waiter, 
     device_name,
@@ -7,6 +8,7 @@ SELECT
 FROM 
     `sage-yeti-453214-v6.dbt_lvanwyk.clean_order_cleaned`
 GROUP BY 
+    id_order,
     id_store, 
     id_waiter, 
     device_name
